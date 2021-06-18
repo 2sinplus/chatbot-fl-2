@@ -11,7 +11,6 @@ from check_input_data import *
 #
 bot = telebot.TeleBot(config.BOT_TOKEN)
 #
-users = []
 
 
 def createBD_FromDump(path_db, path_dump):
@@ -916,34 +915,15 @@ def create_product_text_by_id(product_id, count):
     return text
 
 
-def get_users():
-    """Получает всех пользователей бота и сохраняет их в глобальную переменную."""
-    global users
-    db = requestDB(config.DB_PATH)
-    temp = db.get_users()
-    for user in temp:
-        users.append(user[0])
-    db.close()
-
-
-def check_is_new_user(user_id: int) -> bool:
-    """Проверяет нет ли пользователя в БД."""
-    if len(users) != 0:
-        isNewUser = True
-        if user_id in users:
-            isNewUser = False
-        return isNewUser
-    else:  # Если пользователь - первый, кто написал боту
-        return True
-
-
 def user_processing(user_id: int):
     """Обработка пользователя, запустившего бота."""
-    if check_is_new_user(user_id) == True:
+    db = requestDB(config.DB_PATH)
+    check = db.check_user(user_id)
+    db.close()
+    if check == False:
         db = requestDB(config.DB_PATH)
         db.add_user(user_id)
         db.close()
-        get_users()
 
 
 def get_admins() -> list:

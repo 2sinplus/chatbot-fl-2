@@ -24,6 +24,15 @@ class requestDB:
             self.cursor.execute("SELECT * FROM `users`")
             return self.cursor.fetchall()
 
+    def check_user(self, user_id):
+        with self.connection:
+            result = self.cursor.execute(
+                "SELECT DISTINCT 1 FROM `users` WHERE user_id = ? ", (user_id,)).fetchone()
+            if result == None:
+                return False
+            else:
+                return True
+
     def add_admin(self, user_id):
         with self.connection:
             return self.cursor.execute("INSERT INTO `admins` (`user_id`) VALUES(?) ", (user_id,))
