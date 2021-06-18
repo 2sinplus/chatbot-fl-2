@@ -1,0 +1,8 @@
+#
+#BOT_TOKEN = ''
+#
+# ADMINS_GROUP_ID =
+# ADMINS_PRODUCTS_GROUP_ID =
+#
+DB_PATH = 'db/db.db'
+#

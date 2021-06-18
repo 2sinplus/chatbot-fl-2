@@ -1,0 +1,6 @@
+
+__pycache__/
+.vscode/
+bot/config/config.py
+bot/.handler-saves/
+bot/db/db.db
