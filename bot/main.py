@@ -41,7 +41,7 @@ def send_message_to_admins_chat(text):
 
 def send_message_to_admins_product_chat(text):
     'Отправка сообщения в чат для товара.'
-    bot.send_message(chat_id=config.ADMINS_PRODUCTS_GROUP_ID,
+    bot.send_message(chat_id=config.PRODUCTS_GROUP_ID,
                      text=text
                      )
 
