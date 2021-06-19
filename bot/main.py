@@ -692,7 +692,7 @@ def process_phone_step(message):
     db.add_phone_to_castomer(user_id, phone)
     db.close()
     #
-    text = 'Введите ваш адресс...'
+    text = 'Введите ваш адрес...'
     message = bot.send_message(chat_id=user_id,
                                text=text,
                                reply_markup=get_cancel_keyboard()
@@ -708,7 +708,7 @@ def process_address_step(message):
     user_id = message.from_user.id
     #
     if check_address_text(message.text) == False:
-        text = 'Слишком длинный адресс, введите адресс короче.'
+        text = 'Слишком длинный адрес, введите адрес короче.'
         msg = bot.send_message(chat_id=user_id,
                                text=text
                                )
@@ -841,7 +841,7 @@ def create_an_order(user_id, username):
     address = castomer[3]
     delivery_time = castomer[4]
     payment_method = castomer[5]
-    castomer = f'TG-username: @{username}\nИмя: {name}\nТелефон: {phone}\nАдресс: {address}\nВремя доставки: {delivery_time}\nСумма: {get_total(user_id)} руб.\nСпособ оплаты: {payment_method}\n\n'
+    castomer = f'TG-username: @{username}\nИмя: {name}\nТелефон: {phone}\nАдрес: {address}\nВремя доставки: {delivery_time}\nСумма: {get_total(user_id)} руб.\nСпособ оплаты: {payment_method}\n\n'
     products = 'Заказанные товары:\n'
     text = msg + castomer + products
     send_message_to_admins_chat(text)
@@ -996,8 +996,6 @@ if __name__ == '__main__':
         createBD_FromDump(path_db=config.DB_PATH,
                           path_dump=config.DUMP_PATH
                           )
-    #
-    get_users()
     #
     bot.enable_save_next_step_handlers(delay=0)
     bot.load_next_step_handlers()
